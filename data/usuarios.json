@@ -1,0 +1,17 @@
+{
+  "user_1": {
+    "nome": "João Silva",
+    "email": "joao@email.com",
+    "saldo": 5000.0
+  },
+  "user_2": {
+    "nome": "Maria Santos",
+    "email": "maria@email.com",
+    "saldo": 3000.0
+  },
+  "user_3": {
+    "nome": "Pedro Oliveira",
+    "email": "pedro@email.com",
+    "saldo": 7500.0
+  }
+}

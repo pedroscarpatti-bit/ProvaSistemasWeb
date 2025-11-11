@@ -1,0 +1,29 @@
+{
+  "leilao_1": {
+    "titulo": "Notebook Dell Inspiron 15",
+    "descricao": "Intel i7, 16GB RAM, SSD 512GB, Estado: Novo",
+    "preco_inicial": 2000.0,
+    "preco_atual": 2000.0,
+    "data_fim": "2025-11-15T20:00:00",
+    "status": "ativo",
+    "vencedor_id": null
+  },
+  "leilao_2": {
+    "titulo": "iPhone 14 Pro 256GB",
+    "descricao": "Cor: Preto, Estado: Seminovo, com caixa",
+    "preco_inicial": 3500.0,
+    "preco_atual": 3500.0,
+    "data_fim": "2025-11-12T18:00:00",
+    "status": "ativo",
+    "vencedor_id": null
+  },
+  "leilao_3": {
+    "titulo": "Smart TV Samsung 55' 4K",
+    "descricao": "QLED, HDR, Tizen OS, Estado: Novo na caixa",
+    "preco_inicial": 1800.0,
+    "preco_atual": 1800.0,
+    "data_fim": "2025-11-11T22:00:00",
+    "status": "ativo",
+    "vencedor_id": null
+  }
+}

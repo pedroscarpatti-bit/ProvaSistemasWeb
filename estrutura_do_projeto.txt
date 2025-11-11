@@ -1,0 +1,96 @@
+sistema-leilao/
+│
+├── app.py                          # Aplicação Flask principal
+│
+├── lambdas/
+│   ├── lambda_processador.py      # Lambda 1: Processa lances da fila
+│   └── lambda_finalizador.py      # Lambda 2: Finaliza leilões expirados
+│
+├── data/                           # Armazenamento JSON
+│   ├── usuarios.json               # Dados dos usuários
+│   ├── leiloes.json                # Dados dos leilões
+│   ├── lances.json                 # Histórico de lances
+│   └── fila_sqs.json               # Simula fila SQS
+│
+├── utils/
+│   ├── __init__.py
+│   ├── storage.py                  # Funções para ler/escrever JSON
+│   └── validadores.py              # Validações de negócio
+│
+├── templates/                      # (Opcional) Templates HTML
+│   └── index.html                  # Interface web simples
+│
+├── requirements.txt                # Dependências do projeto
+├── README.md                       # Documentação do projeto
+└── .gitignore                      # Arquivos a ignorar no git
+
+
+DESCRIÇÃO DOS ARQUIVOS:
+========================
+
+📁 app.py
+- Aplicação Flask principal
+- Endpoints REST: /usuarios, /leiloes, /lances
+- Publica mensagens na fila SQS simulada
+
+📁 lambdas/lambda_processador.py
+- Consome mensagens da fila
+- Valida regras de negócio (saldo, valor mínimo)
+- Atualiza leilões e lances
+
+📁 lambdas/lambda_finalizador.py
+- Executa periodicamente (pode ser chamado manualmente)
+- Verifica leilões com data_fim vencida
+- Define vencedor e atualiza status
+
+📁 data/*.json
+- Persistência simples em JSON
+- Inicializados com dados de exemplo
+
+📁 utils/storage.py
+- Funções reutilizáveis: ler_json(), escrever_json()
+- Gerenciamento seguro de arquivos
+
+📁 utils/validadores.py
+- Validações: usuario_tem_saldo(), lance_valido()
+- Regras de negócio centralizadas
+
+
+ENDPOINTS DA API FLASK:
+========================
+
+GET  /usuarios                  - Lista todos os usuários
+POST /usuarios                  - Cria novo usuário
+
+GET  /leiloes                   - Lista todos os leilões
+POST /leiloes                   - Cria novo leilão
+GET  /leiloes/<id>              - Detalhes de um leilão
+
+POST /lances                    - Envia novo lance (vai para SQS)
+GET  /lances/<leilao_id>        - Lista lances de um leilão
+
+GET  /fila                      - Visualiza fila SQS (debug)
+
+
+COMO EXECUTAR:
+==============
+
+1. Instalar dependências:
+   pip install -r requirements.txt
+
+2. Executar Flask:
+   python app.py
+
+3. Executar Lambda Processador (em outro terminal):
+   python lambdas/lambda_processador.py
+
+4. Executar Lambda Finalizador (em outro terminal ou agendar):
+   python lambdas/lambda_finalizador.py
+
+
+FLUXO DE DADOS:
+===============
+
+1. Usuário faz POST /lances → Flask valida básico → Adiciona na fila_sqs.json
+2. lambda_processador.py consome fila → Processa lance → Atualiza lances.json e leiloes.json
+3. lambda_finalizador.py roda periodicamente → Verifica leilões expirados → Define vencedor
