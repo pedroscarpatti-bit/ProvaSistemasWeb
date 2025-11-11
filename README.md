@@ -196,6 +196,6 @@ curl http://localhost:5000/fila
 - Armazenamento em JSON (não recomendado para produção)
 - Para produção, considere usar banco de dados real e AWS real
 
-## 👨‍💻 Autor
+## 👨‍💻 Autor Pedro Batista Bernardes Scarpatti 10/11/2025
 
-Sistema de Leilão Online - Projeto de Arquitetura Web
+Sistema de Leilão Online - Projeto de Sistemas Web
